@@ -1,11 +1,11 @@
-package com.bayescom.advancesdkdemo;
+package com.bxm.advancesdkdemo;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.bayesadvance.AdvanceConfig;
+import com.bxmadvance.AdvanceConfig;
 
 public class MainActivity extends AppCompatActivity {
 

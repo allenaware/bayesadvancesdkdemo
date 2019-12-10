@@ -1,4 +1,4 @@
-package com.bayescom.advancesdkdemo;
+package com.bxm.advancesdkdemo;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,13 +12,13 @@ import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bayesadvance.AdvanceConfig;
-import com.bayesadvance.AdvanceNativeExpress;
-import com.bayesadvance.AdvanceNativeExpressAdItem;
-import com.bayesadvance.AdvanceNativeExpressListener;
-import com.bayesadvance.csj.CsjNativeExpressAdItem;
-import com.bayesadvance.gdt.GdtNativeAdExpressAdItem;
-import com.bayesadvance.model.SdkSupplier;
+import com.bxmadvance.AdvanceConfig;
+import com.bxmadvance.AdvanceNativeExpress;
+import com.bxmadvance.AdvanceNativeExpressAdItem;
+import com.bxmadvance.AdvanceNativeExpressListener;
+import com.bxmadvance.csj.CsjNativeExpressAdItem;
+import com.bxmadvance.gdt.GdtNativeAdExpressAdItem;
+import com.bxmadvance.model.SdkSupplier;
 import com.bytedance.sdk.openadsdk.TTAdDislike;
 import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
 import com.qq.e.ads.nativ.NativeExpressADView;

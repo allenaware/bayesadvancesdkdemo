@@ -1,4 +1,4 @@
-package com.bayescom.advancesdkdemo;
+package com.bxm.advancesdkdemo;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -21,15 +21,15 @@ import android.widget.Toast;
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxStatus;
 import com.androidquery.callback.BitmapAjaxCallback;
-import com.bayesadvance.AdvanceConfig;
-import com.bayesadvance.AdvanceNative;
-import com.bayesadvance.AdvanceNativeAdData;
-import com.bayesadvance.AdvanceNativeListener;
-import com.bayesadvance.bayes.BayesNativeAdData;
-import com.bayesadvance.csj.CsjNativeAdData;
-import com.bayesadvance.gdt.GdtNativeAdData;
-import com.bayesadvance.model.SdkSupplier;
-import com.bayescom.sdk.BayesVideoView;
+import com.bxmadvance.AdvanceConfig;
+import com.bxmadvance.AdvanceNative;
+import com.bxmadvance.AdvanceNativeAdData;
+import com.bxmadvance.AdvanceNativeListener;
+import com.bxmadvance.bxm.BxmNativeAdData;
+import com.bxmadvance.csj.CsjNativeAdData;
+import com.bxmadvance.gdt.GdtNativeAdData;
+import com.bxmadvance.model.SdkSupplier;
+import com.bxm.sdk.BxmVideoView;
 import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAppDownloadListener;
 import com.bytedance.sdk.openadsdk.TTFeedAd;
@@ -70,7 +70,7 @@ public class NativeActivity extends Activity implements AdvanceNativeListener {
         //设置是否缓存策略
         advanceNative.setUseCache(true);
         //设置打底sdk参数（当策略服务有问题的话，会使用 该sdk的参数)
-        advanceNative.setDefaultSdkSupplier(new SdkSupplier("12121x","1212xxxx","xxyyyxxyy",AdvanceConfig.SDK_TAG_BAYES));
+        advanceNative.setDefaultSdkSupplier(new SdkSupplier("12121x","1212xxxx","xxyyyxxyy",AdvanceConfig.SDK_TAG_BXM));
         advanceNative.loadAd();
 
     }
@@ -87,9 +87,9 @@ public class NativeActivity extends Activity implements AdvanceNativeListener {
             renderCsjAdUi(ad);
 
         }
-        if (advanceNativeAdData.getSdkTag().equals(AdvanceConfig.SDK_TAG_BAYES)) {
-            final BayesNativeAdData ad = (BayesNativeAdData) advanceNativeAdData;
-            renderBayesAdUi(ad);
+        if (advanceNativeAdData.getSdkTag().equals(AdvanceConfig.SDK_TAG_BXM)) {
+            final BxmNativeAdData ad = (BxmNativeAdData) advanceNativeAdData;
+            renderBxmAdUi(ad);
 
         }
     }
@@ -549,8 +549,8 @@ public class NativeActivity extends Activity implements AdvanceNativeListener {
 //        mTTAppDownloadListenerMap.put(adViewHolder, downloadListener);
     }
 
-    private void renderBayesAdUi(BayesNativeAdData ad) {
-        LayoutInflater.from(this).inflate(R.layout.bayes_item_ad_unified, advanceNativeAdContainer, true);
+    private void renderBxmAdUi(BxmNativeAdData ad) {
+        LayoutInflater.from(this).inflate(R.layout.bxm_item_ad_unified, advanceNativeAdContainer, true);
         //首先需要绑定广告容器
         Button button = advanceNativeAdContainer.findViewById(R.id.btn_download);
         List<View> clickableViews = new ArrayList<>();
@@ -561,10 +561,10 @@ public class NativeActivity extends Activity implements AdvanceNativeListener {
         mAQuery.id(R.id.text_desc).text(ad.getDescription());
         if (ad.getIsVideo()) {
             ad.muteVideo();
-            BayesVideoView videoView = ad.getBayesVideoView();
-            FrameLayout bayesMediaView = advanceNativeAdContainer.findViewById(R.id.bayes_media_view);
-            bayesMediaView.removeAllViews();
-            bayesMediaView.addView(videoView);
+            BxmVideoView videoView = ad.getBxmVideoView();
+            FrameLayout bxmMediaView = advanceNativeAdContainer.findViewById(R.id.bxm_media_view);
+            bxmMediaView.removeAllViews();
+            bxmMediaView.addView(videoView);
             mAQuery.id(R.id.img_poster).visibility(View.GONE);
             ad.playVideo();
 

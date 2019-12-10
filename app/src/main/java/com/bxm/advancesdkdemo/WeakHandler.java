@@ -1,4 +1,4 @@
-package com.bayescom.advancesdkdemo;
+package com.bxm.advancesdkdemo;
 
 import android.os.Handler;
 import android.os.Looper;

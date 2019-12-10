@@ -1,4 +1,4 @@
-package com.bayescom.advancesdkdemo;
+package com.bxm.advancesdkdemo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.bayescom.advancesdkdemo", appContext.getPackageName());
+        assertEquals("com.bxm.advancesdkdemo", appContext.getPackageName());
     }
 }

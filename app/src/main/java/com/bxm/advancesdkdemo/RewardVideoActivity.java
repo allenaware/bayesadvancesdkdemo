@@ -1,4 +1,4 @@
-package com.bayescom.advancesdkdemo;
+package com.bxm.advancesdkdemo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,13 +6,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.bayesadvance.AdvanceConfig;
-import com.bayesadvance.AdvanceRewardVideo;
-import com.bayesadvance.AdvanceRewardVideoItem;
-import com.bayesadvance.AdvanceRewardVideoListener;
-import com.bayesadvance.csj.CsjRewardVideoAdItem;
-import com.bayesadvance.gdt.GdtRewardVideoAdItem;
-import com.bayesadvance.model.SdkSupplier;
+import com.bxmadvance.AdvanceConfig;
+import com.bxmadvance.AdvanceRewardVideo;
+import com.bxmadvance.AdvanceRewardVideoItem;
+import com.bxmadvance.AdvanceRewardVideoListener;
+import com.bxmadvance.csj.CsjRewardVideoAdItem;
+import com.bxmadvance.gdt.GdtRewardVideoAdItem;
+import com.bxmadvance.model.SdkSupplier;
 import com.bytedance.sdk.openadsdk.TTAppDownloadListener;
 import com.bytedance.sdk.openadsdk.TTRewardVideoAd;
 

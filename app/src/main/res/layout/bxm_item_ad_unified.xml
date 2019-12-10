@@ -75,7 +75,7 @@
 
         <!-- 原生广告的视频组件 -->
         <FrameLayout
-            android:id="@+id/bayes_media_view"
+            android:id="@+id/bxm_media_view"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="#FCFBFB" />

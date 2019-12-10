@@ -1,4 +1,4 @@
-package com.bayescom.advancesdkdemo;
+package com.bxm.advancesdkdemo;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -18,10 +18,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bayesadvance.AdvanceConfig;
-import com.bayesadvance.AdvanceSplash;
-import com.bayesadvance.AdvanceSplashListener;
-import com.bayesadvance.model.SdkSupplier;
+import com.bxmadvance.AdvanceConfig;
+import com.bxmadvance.AdvanceSplash;
+import com.bxmadvance.AdvanceSplashListener;
+import com.bxmadvance.model.SdkSupplier;
 import com.bumptech.glide.Glide;
 
 
@@ -49,7 +49,7 @@ public class SplashActivity extends Activity implements AdvanceSplashListener,We
         ImageView logoView = new ImageView(this);
         Glide.with(this).load(R.mipmap.yourlogo).into(logoView);
         //设置开屏底部logo
-        advanceSplash.setBayesLogoView(logoView);
+        advanceSplash.setBxmLogoView(logoView);
         //设置是否使用缓存策略
         advanceSplash.setUseCache(true);
         advanceSplash.setSkipText("%d s|跳过")

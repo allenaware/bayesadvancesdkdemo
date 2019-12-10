@@ -1,4 +1,4 @@
-package com.bayescom.advancesdkdemo;
+package com.bxm.advancesdkdemo;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -25,15 +25,15 @@ import android.widget.Toast;
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxStatus;
 import com.androidquery.callback.BitmapAjaxCallback;
-import com.bayesadvance.AdvanceConfig;
-import com.bayesadvance.AdvanceNative;
-import com.bayesadvance.AdvanceNativeAdData;
-import com.bayesadvance.AdvanceNativeListener;
-import com.bayesadvance.bayes.BayesNativeAdData;
-import com.bayesadvance.csj.CsjNativeAdData;
-import com.bayesadvance.gdt.GdtNativeAdData;
-import com.bayesadvance.model.SdkSupplier;
-import com.bayescom.sdk.BayesVideoView;
+import com.bxmadvance.AdvanceConfig;
+import com.bxmadvance.AdvanceNative;
+import com.bxmadvance.AdvanceNativeAdData;
+import com.bxmadvance.AdvanceNativeListener;
+import com.bxmadvance.bxm.BxmNativeAdData;
+import com.bxmadvance.csj.CsjNativeAdData;
+import com.bxmadvance.gdt.GdtNativeAdData;
+import com.bxmadvance.model.SdkSupplier;
+import com.bxm.sdk.BxmVideoView;
 import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAppDownloadListener;
 import com.bytedance.sdk.openadsdk.TTFeedAd;
@@ -70,7 +70,7 @@ public class NativeRecyclerViewActivity extends Activity
     private static final int TYPE_DATA = 0;
     private static final int TYPE_GDT_AD = 1;
     private static final int TYPE_CSJ_AD = 2;
-    private static final int TYPE_BAYES_AD = 3;
+    private static final int TYPE_BXM_AD = 3;
     //穿山甲下载监听器Map
     private Map<CustomHolder, TTAppDownloadListener> mTTAppDownloadListenerMap = new WeakHashMap<>();
 
@@ -174,7 +174,7 @@ public class NativeRecyclerViewActivity extends Activity
                 } else if (AdvanceConfig.SDK_TAG_CSJ.equals(advanceNativeAdData.getSdkTag())) {
                     return TYPE_CSJ_AD;
                 } else {
-                    return TYPE_BAYES_AD;
+                    return TYPE_BXM_AD;
                 }
 
             } else {
@@ -192,8 +192,8 @@ public class NativeRecyclerViewActivity extends Activity
                 case TYPE_CSJ_AD:
                     view = LayoutInflater.from(mContext).inflate(R.layout.csj_item_ad_unified, null);
                     break;
-                case TYPE_BAYES_AD:
-                    view = LayoutInflater.from(mContext).inflate(R.layout.bayes_item_ad_unified, null);
+                case TYPE_BXM_AD:
+                    view = LayoutInflater.from(mContext).inflate(R.layout.bxm_item_ad_unified, null);
                     break;
                 case TYPE_DATA:
                     view = LayoutInflater.from(mContext).inflate(R.layout.item_data, null);
@@ -214,8 +214,8 @@ public class NativeRecyclerViewActivity extends Activity
                 case TYPE_CSJ_AD:
                     initCsjAdItemView(position, holder);
                     break;
-                case TYPE_BAYES_AD:
-                    initBayesAdItemView(position, holder);
+                case TYPE_BXM_AD:
+                    initBxmAdItemView(position, holder);
                     break;
                 case TYPE_DATA:
                     holder.title.setText(((NormalItem) mData.get(position))
@@ -448,45 +448,45 @@ public class NativeRecyclerViewActivity extends Activity
 
         }
 
-        private void initBayesAdItemView(int position, final CustomHolder holder) {
+        private void initBxmAdItemView(int position, final CustomHolder holder) {
             AdvanceNativeAdData advanceNativeAdData = (AdvanceNativeAdData) mData.get(position);
-            //获取倍业原生广告数据对象
-            final BayesNativeAdData ad = (BayesNativeAdData) advanceNativeAdData;
-            AQuery bayesAQ = holder.bayesAQ;
+            //获取变现猫原生广告数据对象
+            final BxmNativeAdData ad = (BxmNativeAdData) advanceNativeAdData;
+            AQuery bxmAQ = holder.bxmAQ;
             //需要先绑定广告容器视图和可点击View,一般为按钮，需要在容器内部，不可以是广告容器本身
             List<View> clickableViews = new ArrayList<>();
-            clickableViews.add(holder.bayesDownloadButton);
-            ad.bindView(holder.bayesContainer,clickableViews);
-            holder.bayesTitle.setText(ad.getTitle());
-            holder.bayesDescription.setText(ad.getDescription());
+            clickableViews.add(holder.bxmDownloadButton);
+            ad.bindView(holder.bxmContainer,clickableViews);
+            holder.bxmTitle.setText(ad.getTitle());
+            holder.bxmDescription.setText(ad.getDescription());
             String adSource= ad.getAdSource();
             if(TextUtils.isEmpty(adSource))
             {
-                holder.bayesSource.setText("广告");
+                holder.bxmSource.setText("广告");
 
             }else{
-                holder.bayesSource.setText(ad.getAdSource());
+                holder.bxmSource.setText(ad.getAdSource());
             }
-            bayesAQ.id(R.id.img_logo).image(ad.getIcon(),false,true);
+            bxmAQ.id(R.id.img_logo).image(ad.getIcon(),false,true);
             if(ad.isAppAd())
             {
-                holder.bayesDownloadButton.setText("下载");
+                holder.bxmDownloadButton.setText("下载");
             }else
             {
-                holder.bayesDownloadButton.setText("浏览");
+                holder.bxmDownloadButton.setText("浏览");
             }
             if(ad.getIsVideo())
             {
-                holder.bayesVideoViewContainer.setVisibility(View.VISIBLE);
-                holder.bayesImageGroupContainer.setVisibility(View.GONE);
-                holder.bayesImageLarge.setVisibility(View.GONE);
-                BayesVideoView videoView = ad.getBayesVideoView();
+                holder.bxmVideoViewContainer.setVisibility(View.VISIBLE);
+                holder.bxmImageGroupContainer.setVisibility(View.GONE);
+                holder.bxmImageLarge.setVisibility(View.GONE);
+                BxmVideoView videoView = ad.getBxmVideoView();
                 if(videoView!=null)
                 {
-                    if(holder.bayesVideoViewContainer !=null&&videoView.getParent()==null)
+                    if(holder.bxmVideoViewContainer !=null&&videoView.getParent()==null)
                     {
-                        holder.bayesVideoViewContainer.removeAllViews();
-                        holder.bayesVideoViewContainer.addView(videoView);
+                        holder.bxmVideoViewContainer.removeAllViews();
+                        holder.bxmVideoViewContainer.addView(videoView);
                         ad.muteVideo();
                         ad.playVideo();
                     }else
@@ -500,20 +500,20 @@ public class NativeRecyclerViewActivity extends Activity
             }else if(ad.getImageList()!=null&&ad.getImageList().size()==1)
             {
                 //单图大图
-                holder.bayesVideoViewContainer.setVisibility(View.GONE);
-                holder.bayesImageGroupContainer.setVisibility(View.GONE);
-                holder.bayesImageLarge.setVisibility(View.VISIBLE);
-                bayesAQ.id(R.id.img_poster).image(ad.getImageList().get(0),false,true);
+                holder.bxmVideoViewContainer.setVisibility(View.GONE);
+                holder.bxmImageGroupContainer.setVisibility(View.GONE);
+                holder.bxmImageLarge.setVisibility(View.VISIBLE);
+                bxmAQ.id(R.id.img_poster).image(ad.getImageList().get(0),false,true);
 
             }else if(ad.getImageList()!=null&&ad.getImageList().size()>=3)
             {
                 //小图组图
-                holder.bayesVideoViewContainer.setVisibility(View.GONE);
-                holder.bayesImageGroupContainer.setVisibility(View.VISIBLE);
-                holder.bayesImageLarge.setVisibility(View.GONE);
-                bayesAQ.id(R.id.img_1).image(ad.getImageList().get(0),false,true);
-                bayesAQ.id(R.id.img_2).image(ad.getImageList().get(1),false,true);
-                bayesAQ.id(R.id.img_3).image(ad.getImageList().get(2),false,true);
+                holder.bxmVideoViewContainer.setVisibility(View.GONE);
+                holder.bxmImageGroupContainer.setVisibility(View.VISIBLE);
+                holder.bxmImageLarge.setVisibility(View.GONE);
+                bxmAQ.id(R.id.img_1).image(ad.getImageList().get(0),false,true);
+                bxmAQ.id(R.id.img_2).image(ad.getImageList().get(1),false,true);
+                bxmAQ.id(R.id.img_3).image(ad.getImageList().get(2),false,true);
             }
             //发送展示上报
             ad.reportAdShow();
@@ -720,20 +720,20 @@ public class NativeRecyclerViewActivity extends Activity
         public ViewGroup csjImageGroupContainer;
         public ViewGroup csjContainer;
         public AQuery csjAQ;
-        //倍业广告数据
-        public TextView bayesTitle;
-        public TextView bayesDescription;
-        public TextView bayesSource;
-        public ImageView bayesIcon;
-        public ImageView bayesImageLarge;
-        public ImageView bayesImage1;
-        public ImageView bayesImage2;
-        public ImageView bayesImage3;
-        public Button bayesDownloadButton;
-        public FrameLayout bayesVideoViewContainer;
-        public ViewGroup bayesImageGroupContainer;
-        public ViewGroup bayesContainer;
-        public AQuery bayesAQ;
+        //变现猫广告数据
+        public TextView bxmTitle;
+        public TextView bxmDescription;
+        public TextView bxmSource;
+        public ImageView bxmIcon;
+        public ImageView bxmImageLarge;
+        public ImageView bxmImage1;
+        public ImageView bxmImage2;
+        public ImageView bxmImage3;
+        public Button bxmDownloadButton;
+        public FrameLayout bxmVideoViewContainer;
+        public ViewGroup bxmImageGroupContainer;
+        public ViewGroup bxmContainer;
+        public AQuery bxmAQ;
 
 
         public CustomHolder(View itemView, int adType) {
@@ -770,20 +770,20 @@ public class NativeRecyclerViewActivity extends Activity
                     csjContainer =itemView.findViewById(R.id.native_ad_container);
                     csjAQ = new AQuery(itemView);
                     break;
-                case TYPE_BAYES_AD:
-                    bayesTitle = itemView.findViewById(R.id.text_title);
-                    bayesDescription = itemView.findViewById(R.id.text_desc);
-                    bayesSource = itemView.findViewById(R.id.text_adsource);
-                    bayesImageLarge = itemView.findViewById(R.id.img_poster);
-                    bayesImage1 = itemView.findViewById(R.id.img_1);
-                    bayesImage2 = itemView.findViewById(R.id.img_2);
-                    bayesImage3 = itemView.findViewById(R.id.img_3);
-                    bayesIcon   = itemView.findViewById(R.id.img_logo);
-                    bayesVideoViewContainer = itemView.findViewById(R.id.bayes_media_view);
-                    bayesImageGroupContainer = itemView.findViewById(R.id.native_3img_ad_container);
-                    bayesDownloadButton = itemView.findViewById(R.id.btn_download);
-                    bayesContainer =itemView.findViewById(R.id.native_ad_container);
-                    bayesAQ = new AQuery(itemView);
+                case TYPE_BXM_AD:
+                    bxmTitle = itemView.findViewById(R.id.text_title);
+                    bxmDescription = itemView.findViewById(R.id.text_desc);
+                    bxmSource = itemView.findViewById(R.id.text_adsource);
+                    bxmImageLarge = itemView.findViewById(R.id.img_poster);
+                    bxmImage1 = itemView.findViewById(R.id.img_1);
+                    bxmImage2 = itemView.findViewById(R.id.img_2);
+                    bxmImage3 = itemView.findViewById(R.id.img_3);
+                    bxmIcon   = itemView.findViewById(R.id.img_logo);
+                    bxmVideoViewContainer = itemView.findViewById(R.id.bxm_media_view);
+                    bxmImageGroupContainer = itemView.findViewById(R.id.native_3img_ad_container);
+                    bxmDownloadButton = itemView.findViewById(R.id.btn_download);
+                    bxmContainer =itemView.findViewById(R.id.native_ad_container);
+                    bxmAQ = new AQuery(itemView);
                     break;
                 case TYPE_DATA:
                     title = itemView.findViewById(R.id.title);
