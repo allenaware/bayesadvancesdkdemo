@@ -84,7 +84,7 @@ public class NativeRecyclerViewActivity extends Activity
         mAdManager.setAdListener(this);
         mAdManager.setGdtMaxVideoDuration(60);
         //设置打底SDK参数
-        mAdManager.setDefaultSdkSupplier(new SdkSupplier("xxx","yyy",null,AdvanceConfig.SDK_TAG_GDT));
+        mAdManager.setDefaultSdkSupplier(new SdkSupplier("1101152570","6040749702835933",null,AdvanceConfig.SDK_TAG_GDT));
         mAdManager.loadAd();
     }
 

@@ -70,7 +70,7 @@ public class NativeActivity extends Activity implements AdvanceNativeListener {
         //设置是否缓存策略
         advanceNative.setUseCache(true);
         //设置打底sdk参数（当策略服务有问题的话，会使用 该sdk的参数)
-        advanceNative.setDefaultSdkSupplier(new SdkSupplier("12121x","1212xxxx","xxyyyxxyy",AdvanceConfig.SDK_TAG_BXM));
+        advanceNative.setDefaultSdkSupplier(new SdkSupplier("100171","10000479","e1d0d3aaf95d3f1980367e75bc41141d",AdvanceConfig.SDK_TAG_BXM));
         advanceNative.loadAd();
 
     }
