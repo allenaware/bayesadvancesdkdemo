@@ -89,7 +89,7 @@ public class NativeExpressRecyclerViewActivity extends Activity implements
      *
      */
     private void initAdvanceNativeExpressAD() {
-        mADManager = new AdvanceNativeExpress(this, Constants.mediaId, Constants.nativeExpressAdspotId);
+        mADManager = new AdvanceNativeExpress(this, ADManager.getInstance().getMediaId(), ADManager.getInstance().getNativeExpressAdspotId());
         mADManager.setExpressViewAcceptedSize(600, 250)
                 .setGdtFullWidth(true)
                 .setGdtAutoHeight(true)
@@ -165,6 +165,11 @@ public class NativeExpressRecyclerViewActivity extends Activity implements
 
                             @Override
                             public void onVideoLoading(NativeExpressADView nativeExpressADView) {
+
+                            }
+
+                            @Override
+                            public void onVideoCached(NativeExpressADView nativeExpressADView) {
 
                             }
 

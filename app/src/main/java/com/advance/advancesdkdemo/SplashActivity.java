@@ -41,19 +41,16 @@ public class SplashActivity extends Activity implements AdvanceSplashListener,We
         FrameLayout adContainer = findViewById(R.id.splash_container);
         TextView skipView = findViewById(R.id.skip_view);
 
-        advanceSplash = new AdvanceSplash(this, Constants.mediaId, Constants.splashAdspotId, adContainer, skipView);
+        advanceSplash = new AdvanceSplash(this, ADManager.getInstance().getMediaId(), ADManager.getInstance().getSplashAdspotId(), adContainer, skipView);
         //Android10 适配OA
         AdvanceConfig.getInstance().setOaid("");
-        ImageView logoView = new ImageView(this);
         //设置开屏底部logo
         advanceSplash.setLogoImage(this.getResources().getDrawable(R.mipmap.logo));
         advanceSplash.setHolderImage(this.getResources().getDrawable(R.mipmap.background));
-        //设置是否使用缓存策略
-        advanceSplash.setUseCache(true);
         advanceSplash.setSkipText("%d s|跳过")
                 .setCsjAcceptedSize(1080, 1920)//设置穿山甲广告图片偏好尺寸(如果接入穿山甲的话
                 .setAdListener(this);
-        //开屏位置推荐开启缓存设置
+        //设置是否使用缓存策略 ，开屏位置推荐开启缓存设置
         advanceSplash.setUseCache(true);
         //设置打底sdk参数（当策略服务有问题的话，会使用 该sdk的参数)
         advanceSplash.setDefaultSdkSupplier(new SdkSupplier("5001121","801121648",null,AdvanceConfig.SDK_TAG_CSJ));
@@ -88,11 +85,26 @@ public class SplashActivity extends Activity implements AdvanceSplashListener,We
 
     }
 
-    @Override
-    public void onAdClose() {
-        Log.d("DEMO", "Splash ad closed");
-        Toast.makeText(this,"广告关闭",Toast.LENGTH_SHORT).show();
+//    @Override
+//    public void onAdClose() {
+//        Log.d("DEMO", "Splash ad closed");
+////        Toast.makeText(this,"广告关闭",Toast.LENGTH_SHORT).show();
+//
+//        mHandler.sendEmptyMessageDelayed(MSG_GO_MAIN,100);
+//    }
 
+    @Override
+    public void onAdSkip() {
+
+        Log.d("DEMO", "Splash ad kip");
+        Toast.makeText(this,"跳过广告",Toast.LENGTH_SHORT).show();
+        mHandler.sendEmptyMessageDelayed(MSG_GO_MAIN,100);
+    }
+
+    @Override
+    public void onAdTimeOver() {
+        Log.d("DEMO", "Splash ad timeOver");
+        Toast.makeText(this,"倒计时结束，关闭广告",Toast.LENGTH_SHORT).show();
         mHandler.sendEmptyMessageDelayed(MSG_GO_MAIN,100);
     }
 
